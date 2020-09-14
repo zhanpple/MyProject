@@ -1,0 +1,4 @@
+include ':scan'
+include ':LibHook'
+include ':app'
+rootProject.name = "JavaProject"
