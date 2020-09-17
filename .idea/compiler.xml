@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="annotation" target="1.7" />
+      <module name="lib" target="1.7" />
       <module name="LibHook" target="1.7" />
       <module name="scan" target="1.7" />
     </bytecodeTargetLevel>

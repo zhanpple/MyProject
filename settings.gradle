@@ -1,3 +1,5 @@
+include ':lib'
+include ':annotation'
 include ':scan'
 include ':LibHook'
 include ':app'

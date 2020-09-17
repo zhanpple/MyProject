@@ -48,6 +48,7 @@ public class AnnotationTest {
 
     public static void main(String[] args) throws IllegalAccessException, InvocationTargetException, InstantiationException {
 
+
         //class 获取类注解
         Class<AnnotationTest> annotationTestClass = AnnotationTest.class;
         //getAnnotations 获取所以注解

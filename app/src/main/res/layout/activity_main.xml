@@ -10,6 +10,7 @@
 
 
         <com.zmp.javaproject.MyView
+            android:id="@+id/myView"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:minWidth="300dp"

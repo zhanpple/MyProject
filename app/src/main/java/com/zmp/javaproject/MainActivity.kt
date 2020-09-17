@@ -1,17 +1,23 @@
 package com.zmp.javaproject
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.IntDef
-import androidx.annotation.IntRange
-import androidx.annotation.NonNull
-import androidx.recyclerview.widget.RecyclerView
-import java.util.*
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.example.lib.FindViewByID
+import com.example.lib.MyRouter
+import com.example.lib.RouterTools
 
+@MyRouter("MainActivity")
 class MainActivity : AppCompatActivity() {
+
+
+    @FindViewByID(R.id.myView)
+    lateinit var myView :View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
     }
 
 
