@@ -5,7 +5,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lib.FindViewByID
 import com.example.lib.MyRouter
-import com.example.lib.RouterTools
 
 @MyRouter("MainActivity")
 class MainActivity : AppCompatActivity() {

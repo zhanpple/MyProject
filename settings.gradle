@@ -1,3 +1,4 @@
+include ':baseMoudle'
 include ':lib'
 include ':annotation'
 include ':scan'

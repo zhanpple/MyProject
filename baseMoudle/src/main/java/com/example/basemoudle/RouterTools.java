@@ -1,8 +1,9 @@
-package com.example.lib;
+package com.example.basemoudle;
+
+import android.content.Context;
 
 import java.util.HashMap;
 
-import kotlin.jvm.Volatile;
 
 /**
  * Created at 14:49 2020/9/17
@@ -12,8 +13,7 @@ import kotlin.jvm.Volatile;
  * des:
  */
 public class RouterTools {
-    @Volatile
-    private static RouterTools mRouterTools;
+    private static volatile RouterTools mRouterTools;
     private static HashMap<String, Class<?>> mRouterMap;
 
     private RouterTools() {
@@ -37,7 +37,10 @@ public class RouterTools {
         System.out.println(mRouterMap.get(router));
     }
 
-    public void init(){
+    public void init(Context context){
+
+        context.getPackageManager().
+
     }
 
 

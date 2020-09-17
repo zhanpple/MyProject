@@ -102,7 +102,7 @@ public class MyRouterProcessor extends AbstractProcessor {
 
 
         for (MyRouterBean className : classNames) {
-            constructor.addStatement("com.example.lib.RouterTools.getInstance().addRouter(\"$L\",$L.class)", className.getRouter(), className.getClassName());
+            constructor.addStatement("com.example.basemoudle.RouterTools.getInstance().addRouter(\"$L\",$L.class)", className.getRouter(), className.getClassName());
         }
 
         TypeSpec typeSpec = TypeSpec.classBuilder("MyRouter$$" + module_name)
