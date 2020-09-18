@@ -1,8 +1,6 @@
 package com.example.annotation;
 
-import com.example.lib.FindViewByID;
-import com.example.lib.MyRouter;
-import com.squareup.javapoet.AnnotationSpec;
+import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
@@ -18,6 +16,7 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedOptions;
@@ -31,16 +30,14 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
 
-//import com.google.auto.service.AutoService;
-
 /**
  * Created by zmp on 2019/5/10 16:31
  * 路由注解器
  *
  * @author zmp
  */
-//@AutoService(Processor.class)
-@SupportedAnnotationTypes({"com.example.lib.MyRouter"})
+@AutoService(Processor.class)
+@SupportedAnnotationTypes({"com.example.annotation.MyRouter"})
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedOptions({"MODULE_NAME"})
 public class MyRouterProcessor extends AbstractProcessor {
@@ -129,17 +126,15 @@ public class MyRouterProcessor extends AbstractProcessor {
                 .addSuperinterface( ClassName.get("com.example.basemoudle","IRouter"))
                 .addModifiers(Modifier.PUBLIC)
                 .addMethod(addRouter.build())
-                .addAnnotation(AnnotationSpec
-                        .builder(FindViewByID.class)
-                        .addMember("value","value=$L","2")
-                .build())
+//                .addAnnotation(AnnotationSpec
+//                        .builder(MyRouter.class)
+//                        .addMember("value","value=$L","2")
+//                .build())
                 .build();
 
         JavaFile javaFile = JavaFile.builder("com.example.router." + module_name.toLowerCase(), typeSpec)
                 .build();
         javaFile.writeTo(filer);
-
-
     }
 
 

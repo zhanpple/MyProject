@@ -5,4 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/bt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="跳转到appB"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,5 @@
 package com.example.annotation;
 
-import com.example.lib.MyRouter;
-
-import javax.lang.model.element.TypeElement;
-
 /**
  * Created at 14:30 2020/9/17
  *
@@ -11,7 +7,7 @@ import javax.lang.model.element.TypeElement;
  * <p>
  * des:
  */
-public class MyRouterBean {
+class MyRouterBean {
     private String className;
     private String router;
 

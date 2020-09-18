@@ -1,5 +1,6 @@
+include ':appc'
+include ':appb'
 include ':baseMoudle'
-include ':annotationLib'
 include ':annotation'
 include ':scan'
 include ':LibHook'

@@ -2,8 +2,10 @@ package com.example.basemoudle;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
+import java.lang.reflect.Modifier;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +22,7 @@ import dalvik.system.DexFile;
  */
 public class RouterTools {
     private static volatile RouterTools mRouterTools;
+
     private static HashMap<String, Class<? extends Activity>> mRouterMap;
 
     private RouterTools() {
@@ -29,7 +32,9 @@ public class RouterTools {
     public static RouterTools getInstance() {
         if (mRouterTools == null) {
             synchronized (RouterTools.class) {
-                mRouterTools = new RouterTools();
+                if (mRouterTools == null) {
+                    mRouterTools = new RouterTools();
+                }
             }
         }
         return mRouterTools;
@@ -39,23 +44,25 @@ public class RouterTools {
         mRouterMap.put(router, clazz);
     }
 
-    public void router(String router) {
+    public void navigate(Context context, String router) {
         System.out.println(mRouterMap.get(router));
+        context.startActivity(new Intent(context, mRouterMap.get(router)));
     }
 
     public void init(Context context) {
         String packageResourcePath = context.getApplicationContext().getPackageResourcePath();
         try {
             DexFile dexFile = new DexFile(packageResourcePath);
-
             Enumeration<String> entries = dexFile.entries();
             while (entries.hasMoreElements()) {
                 String element = entries.nextElement();
+                Log.e("RouterTools", "init: " + element);
                 if (element.contains("com.example.router")) {
                     Log.e("RouterTools", "init: " + element);
                     Class<?> aClass = Class.forName(element);
-                    if (IRouter.class.isAssignableFrom(aClass)) {
-                        aClass.newInstance();
+                    int modifiers = aClass.getModifiers();
+                    if (IRouter.class.isAssignableFrom(aClass) && !Modifier.isInterface(modifiers)) {
+                        ((IRouter) aClass.newInstance()).addRouter(mRouterMap);
                     }
                 }
             }
