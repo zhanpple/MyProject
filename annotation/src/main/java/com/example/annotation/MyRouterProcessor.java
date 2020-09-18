@@ -3,8 +3,11 @@ package com.example.annotation;
 import com.example.lib.FindViewByID;
 import com.example.lib.MyRouter;
 import com.squareup.javapoet.AnnotationSpec;
+import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
@@ -87,34 +90,52 @@ public class MyRouterProcessor extends AbstractProcessor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return true;
     }
-
 
     private void writeToFile(String module_name) throws IOException {
         if (classNames.isEmpty()) {
             return;
         }
-        MethodSpec.Builder constructor = MethodSpec.constructorBuilder()
+        //ClassName会自动倒入包
+        ClassName string = ClassName.get("java.lang",
+                "String");
+        ClassName hashMap = ClassName.get("java.util",
+                "HashMap");
+        ClassName activity = ClassName.get("",
+                "? extends android.app.Activity");
+        ClassName clazz = ClassName.get("java.lang",
+                "Class");
+
+        //泛形参数
+        ParameterizedTypeName typeName = ParameterizedTypeName.get(clazz, activity);
+        ParameterizedTypeName type = ParameterizedTypeName.get(hashMap, string, typeName);
+        MethodSpec.Builder addRouter = MethodSpec.methodBuilder("addRouter")
                 .addModifiers(Modifier.PUBLIC)
-                .addJavadoc("Init module_name Router\n");
-
-
+                .addAnnotation(Override.class)
+                .addJavadoc("addRouter\r\n@routerMap 路由map")
+                .returns(TypeName.VOID)
+                .addParameter(
+                        type
+                        ,"routerMap");
+        ClassName routerTools = ClassName.get("com.example.basemoudle",
+                "RouterTools");
         for (MyRouterBean className : classNames) {
-            constructor.addStatement("com.example.basemoudle.RouterTools.getInstance().addRouter(\"$L\",$L.class)", className.getRouter(), className.getClassName());
+//            addRouter.addStatement("$T.getInstance().addRouter(\"$L\",$L.class)",routerTools, className.getRouter(), className.getClassName());
+            addRouter.addStatement("routerMap.put(\"$L\",$L.class)", className.getRouter(), className.getClassName());
         }
 
-        TypeSpec typeSpec = TypeSpec.classBuilder("MyRouter$$" + module_name)
+        TypeSpec typeSpec = TypeSpec.classBuilder("MyRouter$$" + module_name.toUpperCase())
+                .addSuperinterface( ClassName.get("com.example.basemoudle","IRouter"))
                 .addModifiers(Modifier.PUBLIC)
-                .addMethod(constructor.build())
+                .addMethod(addRouter.build())
                 .addAnnotation(AnnotationSpec
                         .builder(FindViewByID.class)
                         .addMember("value","value=$L","2")
                 .build())
                 .build();
 
-        JavaFile javaFile = JavaFile.builder("com.example.lib." + module_name.toLowerCase(), typeSpec)
+        JavaFile javaFile = JavaFile.builder("com.example.router." + module_name.toLowerCase(), typeSpec)
                 .build();
         javaFile.writeTo(filer);
 

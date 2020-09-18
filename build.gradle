@@ -14,6 +14,8 @@ buildscript {
     }
 }
 
+System.out.println("aaaa")
+
 allprojects {
     repositories {
         google()

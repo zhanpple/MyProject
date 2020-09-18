@@ -1,5 +1,5 @@
 include ':baseMoudle'
-include ':lib'
+include ':annotationLib'
 include ':annotation'
 include ':scan'
 include ':LibHook'
