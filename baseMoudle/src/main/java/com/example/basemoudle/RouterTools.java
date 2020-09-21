@@ -22,6 +22,7 @@ import dalvik.system.DexFile;
  */
 public class RouterTools {
     private static volatile RouterTools mRouterTools;
+    private static volatile boolean isUseAms = false;
 
     private static HashMap<String, Class<? extends Activity>> mRouterMap;
 
@@ -50,6 +51,10 @@ public class RouterTools {
     }
 
     public void init(Context context) {
+        loadRouterMap();
+        if (isUseAms) {
+            return;
+        }
         String packageResourcePath = context.getApplicationContext().getPackageResourcePath();
         try {
             DexFile dexFile = new DexFile(packageResourcePath);
@@ -75,6 +80,26 @@ public class RouterTools {
             Log.e("RouterTools", "stringClassEntry: "
                     + stringClassEntry.getKey() + "--" + stringClassEntry.getValue());
 
+        }
+    }
+
+    private static void loadRouterMap() {
+        isUseAms = false;
+        //在此处完成字节码插装
+        //register("com.example.router.appc.MyRouter$$APPC")
+        //register("com.example.router.appb.MyRouter$$APPB")
+    }
+
+    private static void register(String className) {
+        isUseAms = true;
+        try {
+            Class<?> aClass = Class.forName(className);
+            int modifiers = aClass.getModifiers();
+            if (IRouter.class.isAssignableFrom(aClass) && !Modifier.isInterface(modifiers)) {
+                ((IRouter) aClass.newInstance()).addRouter(mRouterMap);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

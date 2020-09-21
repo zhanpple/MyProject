@@ -29,6 +29,7 @@ import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
+import javax.tools.StandardLocation;
 
 /**
  * Created by zmp on 2019/5/10 16:31
@@ -49,7 +50,6 @@ public class MyRouterProcessor extends AbstractProcessor {
     private Messager printMessage;
 
     private ArrayList<MyRouterBean> classNames = new ArrayList<>();
-
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
