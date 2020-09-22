@@ -1,7 +1,9 @@
+import com.alibaba.android.arouter.register.launch.PluginLaunch
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: PluginLaunch
 android {
     compileSdkVersion 29
 
