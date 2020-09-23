@@ -27,8 +27,6 @@ import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
 import java.util.zip.ZipEntry;
 
-import static com.example.plugin.tools.ScanUtil.ASM_CLASS_NAME;
-
 
 /**
  * Created at 9:41 2020/9/23
@@ -77,7 +75,9 @@ public class MyRouterTransform extends MyBaseTransform {
         File containsInitClass = ScanUtil.fileContainsInitClass;
         Logger.e("containsInitClass：" + containsInitClass);
         Logger.e("containsInitClass：" + Arrays.toString(ScanUtil.CLASS_NAMES.toArray()));
-        insertInitCodeIntoJarFile(containsInitClass);
+        if (containsInitClass != null) {
+            insertInitCodeIntoJarFile(containsInitClass);
+        }
     }
 
     /**
@@ -102,7 +102,7 @@ public class MyRouterTransform extends MyBaseTransform {
                 ZipEntry zipEntry = new ZipEntry(entryName);
                 InputStream inputStream = file.getInputStream(jarEntry);
                 jarOutputStream.putNextEntry(zipEntry);
-                if (ASM_CLASS_NAME.equals(entryName)) {
+                if (ScanUtil.ASM_CLASS_NAME.equals(entryName)) {
                     byte[] bytes = referHackWhenInit(inputStream);
                     jarOutputStream.write(bytes);
                 } else {
