@@ -1,9 +1,9 @@
-include ':plugin'
+include ':basePlugin'
 include ':appc'
 include ':appb'
 include ':baseMoudle'
 include ':annotation'
 include ':scan'
-include ':LibHook'
+include ':ZHook'
 include ':app'
 rootProject.name = "JavaProject"

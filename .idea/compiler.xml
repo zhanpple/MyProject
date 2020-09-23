@@ -5,9 +5,9 @@
       <module name="annotation" target="1.7" />
       <module name="annotationLib" target="1.7" />
       <module name="annotionLib" target="1.7" />
-      <module name="LibHook" target="1.7" />
-      <module name="plugin" target="1.7" />
+      <module name="basePlugin" target="1.7" />
       <module name="scan" target="1.7" />
+      <module name="ZHook" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
