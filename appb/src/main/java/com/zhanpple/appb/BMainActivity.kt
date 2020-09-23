@@ -1,17 +1,20 @@
 package com.zhanpple.appb
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import com.example.annotation.MyRouter
 import com.example.basemoudle.RouterTools
 
 import kotlinx.android.synthetic.main.activity_b_main.*
 @MyRouter("appb/BMainActivity")
 class BMainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_b_main)
@@ -22,6 +25,13 @@ class BMainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
             RouterTools.getInstance().navigate(this,"appc/CMainActivity")
         }
+//        lifecycle.addObserver(object : LifecycleEventObserver {
+//            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+//                Log.e(Companion.TAG, "onStateChanged: ${event.name}")
+//                Log.e(Companion.TAG, "onStateChanged -------: ${source.lifecycle.currentState}")
+//            }
+//
+//        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -38,5 +48,9 @@ class BMainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object {
+        private const val TAG = "BMainActivity"
     }
 }

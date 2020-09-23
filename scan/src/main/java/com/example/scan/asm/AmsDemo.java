@@ -1,5 +1,7 @@
 package com.example.scan.asm;
 
+import com.example.scan.asm2.AsmTools;
+
 /**
  * Created at 15:20 2020/9/21
  *
@@ -10,16 +12,6 @@ package com.example.scan.asm;
 
 public class AmsDemo {
 
-   public static void println(){
-       System.out.println("AmsDemo");
-
-       int a = 2;
-       int b = 2;
-       int c = a + b;
-
-       int a1 = 2;
-       int b1 = 2;
-       int d = a1 + b1;
-
-   }
+    public static void println() {
+    }
 }
