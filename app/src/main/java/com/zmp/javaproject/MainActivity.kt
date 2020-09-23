@@ -1,15 +1,10 @@
 package com.zmp.javaproject
 
-import android.graphics.BitmapRegionDecoder
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.MessageQueue
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
 import com.example.annotation.MyRouter
 import com.example.basemoudle.RouterTools
-import com.example.router.appc.`MyRouter$$APPC`
+import com.example.router.app.`MyRouter$$APP`
 
 
 @MyRouter("MainActivity")

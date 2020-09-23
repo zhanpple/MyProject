@@ -1,14 +1,6 @@
-package com.alibaba.android.arouter.register.core
+package com.example.plugin.transform
 
-import com.android.build.api.transform.DirectoryInput
-import com.android.build.api.transform.Format
-import com.android.build.api.transform.JarInput
-import com.android.build.api.transform.QualifiedContent
-import com.android.build.api.transform.Transform
-import com.android.build.api.transform.TransformException
-import com.android.build.api.transform.TransformInput
-import com.android.build.api.transform.TransformInvocation
-import com.android.build.api.transform.TransformOutputProvider
+import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import org.apache.commons.io.FileUtils
 import org.gradle.api.Project
@@ -37,9 +29,9 @@ class AsmTransform extends Transform {
         //当前是否是增量编译
         boolean isIncremental = transformInvocation.isIncremental()
         println("=== isIncremental ===$isIncremental")
-//        if (isIncremental){
-//            return
-//        }
+        if (isIncremental){
+            return
+        }
         //消费型输入，可以从中获取jar包和class文件夹路径。需要输出给下一个任务
         Collection<TransformInput> inputs = transformInvocation.getInputs()
         //引用型输入，无需输出。

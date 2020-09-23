@@ -31,7 +31,7 @@ public class PluginLaunch implements Plugin<Project> {
             def android = project.extensions.getByType(AppExtension)
 
             //register this plugin
-            android.registerTransform(new AsmTransform(project))
+//            android.registerTransform(new AsmTransform(project))
         }
     }
 

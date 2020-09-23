@@ -92,6 +92,7 @@ public class RouterTools {
 
     private static void register(String className) {
         isUseAms = true;
+        Log.e("RouterTools", "register: " + className);
         try {
             Class<?> aClass = Class.forName(className);
             int modifiers = aClass.getModifiers();

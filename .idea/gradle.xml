@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/appc" />
             <option value="$PROJECT_DIR$/baseMoudle" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/plugin" />
             <option value="$PROJECT_DIR$/scan" />
           </set>
         </option>

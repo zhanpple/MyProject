@@ -13,13 +13,11 @@ public class AmsDemo {
    public static void println(){
        System.out.println("AmsDemo");
 
-       int a = 2;
-       int b = 2;
-       int c = a + b;
-
-       int a1 = 2;
-       int b1 = 2;
-       int d = a1 + b1;
+       register("AAAA");
 
    }
+
+    private static void register(String className){
+
+    }
 }
