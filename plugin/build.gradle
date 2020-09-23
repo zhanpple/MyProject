@@ -8,7 +8,6 @@ dependencies {
     implementation gradleApi()
     implementation 'com.android.tools.build:gradle:4.0.1'
 }
-// publish_local_java.gradle
 
 apply plugin: 'maven-publish'
 
