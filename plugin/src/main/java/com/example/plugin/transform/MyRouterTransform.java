@@ -190,7 +190,8 @@ public class MyRouterTransform extends MyBaseTransform {
         protected void onMethodExit(int opcode) {
             super.onMethodExit(opcode);
             for (String className : ScanUtil.CLASS_NAMES) {
-                push(className);
+                Logger.w("className:" + className);
+                push(className.replaceAll("/", "."));
                 invokeStatic(Type.getType(ScanUtil.ASM_CLASS_NAME_TYPE), new Method("register", "(Ljava/lang/String;)V"));
             }
         }
