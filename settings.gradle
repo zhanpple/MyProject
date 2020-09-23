@@ -1,3 +1,4 @@
+include ':plugin'
 include ':appc'
 include ':appb'
 include ':baseMoudle'
