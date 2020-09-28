@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.annotation.MyRouter
 import com.example.basemoudle.RouterTools
 import com.example.router.app.`MyRouter$$APP`
+import com.example.router.appb.`MyRouter$$APPB`
+import com.example.router.appc.`MyRouter$$APPC`
 
 
 @MyRouter("MainActivity")
